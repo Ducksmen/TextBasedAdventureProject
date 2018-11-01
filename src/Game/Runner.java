@@ -12,27 +12,30 @@ public class Runner {
 
     public static void main(String[] args)
     {
-        Room[][] building = new Room[5][5];
+        System.out.println("While dining at your rich uncle's birthday party at his island mansion, tragedy has struck. " +
+                "In the middle of the party the lights went off. When they turned back on a scream could heard from the " + 
+                "main lobby, Your uncle's dead body is laid face first into the ground with the only visible wound being " +
+                "his own personal knife behind his neck.");
 
-        //Fill the building with normal rooms
-        for (int x = 0; x<building.length; x++)
+        Room[][] events = new Room[6][6];
+
+        for (int x = 0; x < events.length; x++)
         {
-            for (int y = 0; y < building[x].length; y++)
+            for (int y = 0; y < events[x].length; y++)
             {
-                building[x][y] = new Room(x,y);
+                events[x][y] = new Room(x,y);
             }
         }
 
-
         //Setup player 1 and the input scanner
         Person player1 = new Person("FirstName", "FamilyName", 0,0);
-        building[0][0].enterRoom(player1);
+        events[0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
         while(gameOn)
         {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
-            if(validMove(move, player1, building))
+            if(validMove(move, player1, events))
             {
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
 
