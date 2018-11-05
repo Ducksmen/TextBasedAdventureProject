@@ -1,6 +1,7 @@
 package Game;
 
 import People.Person;
+import Rooms.Board;
 import Rooms.Room;
 
 import java.util.Scanner;
@@ -10,37 +11,41 @@ public class Runner {
 
     private static boolean gameOn = true;
 
-    public static void main(String[] args)
-    {
-        System.out.println("While dining at your rich uncle's birthday party at his island mansion, tragedy has struck. " +
-                "In the middle of the party the lights went off. When they turned back on a scream could heard from the " + 
-                "main lobby, Your uncle's dead body is laid face first into the ground with the only visible wound being " +
-                "his own personal knife behind his neck.");
+    public static void main(String[] args) {
+        System.out.println("While dining at your rich uncle's birthday party at his island mansion, the lights suddenly turned off. " + "\n" +
+                "When they turned back on a scream could heard from the main lobby," + "\n" +
+                "Your uncle's body is laid face first into the ground in his own blood, " + "\n" +
+                "the only visible wound being his own personal knife behind his neck." + "\n" +
+                ""
+                );
 
-        Room[][] events = new Room[6][6];
+        int rows = 4;
+        int columns = 4;
+        String[][] mansion = new String[rows][columns];
+        Board area = new Board(mansion);
+        area.setMansion();
+        mansion[0][0] = mansion[0][0] + "(X)";
+        area.print();
 
-        for (int x = 0; x < events.length; x++)
-        {
-            for (int y = 0; y < events[x].length; y++)
-            {
-                events[x][y] = new Room(x,y);
+        Room[][] events = new Room[4][4];
+
+        for (int x = 0; x < events.length; x++) {
+            for (int y = 0; y < events[x].length; y++) {
+                events[x][y] = new Room(x, y);
             }
         }
 
         //Setup player 1 and the input scanner
-        Person player1 = new Person("FirstName", "FamilyName", 0,0);
+        Person player1 = new Person("FirstName", "FamilyName", 0, 0);
         events[0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
-        while(gameOn)
-        {
+        while (gameOn) {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
-            if(validMove(move, player1, events))
-            {
+            if (validMove(move, player1, events)) {
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
 
-            }
-            else {
+            } else {
                 System.out.println("Please choose a valid move.");
             }
 
