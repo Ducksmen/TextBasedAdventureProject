@@ -12,11 +12,17 @@ public class Runner {
     private static boolean gameOn = true;
 
     public static void main(String[] args) {
-        System.out.println("While dining at your rich uncle's birthday party at his island mansion, the lights suddenly turned off. " + "\n" +
+        System.out.println("While dining at your rich uncle, Reinhardt's birthday party at his island mansion, the lights suddenly turned off. " + "\n" +
                 "When they turned back on a scream could heard from the main lobby," + "\n" +
                 "Your uncle's body is laid face first into the ground in his own blood, " + "\n" +
                 "the only visible wound being his own personal knife behind his neck." + "\n" +
-                ""
+                "Excluding yourself there were six other people at the party." + "\n" +
+                "Your uncle's wife A, his personal butler B, his personal maid C, his two children D and E and finally his old friend F." + "\n" +
+                "It's up to you to find the murderer before they can hide all the evidence." + "\n" +
+                "Gather evidence by listening to everyone's testimonies and exploring the mansion" + "\n" +
+                "To accuse someone you need three pieces evidence and a motive." + "\n" +
+                "You lose if you wrongly accuse someone three times or"
+
                 );
 
         int rows = 4;
@@ -24,7 +30,7 @@ public class Runner {
         String[][] mansion = new String[rows][columns];
         Board area = new Board(mansion);
         area.setMansion();
-        mansion[0][0] = mansion[0][0] + "(X)";
+        mansion[0][0] += "(X)";
         area.print();
 
         Room[][] events = new Room[4][4];
