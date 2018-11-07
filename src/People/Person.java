@@ -6,6 +6,8 @@ package People;
 public class Person {
     String firstName;
     String familyName;
+    int hp;
+    int clips;
     int xLoc, yLoc;
 
 
@@ -25,12 +27,14 @@ public class Person {
         this.yLoc = yLoc;
     }
 
-    public Person (String firstName, String familyName, int xLoc, int yLoc)
+    public Person (String firstName, String familyName, int xLoc, int yLoc, int hp, int clips)
     {
         this.firstName = firstName;
         this.familyName = familyName;
         this.xLoc = xLoc;
         this.yLoc = yLoc;
+        this.hp = hp;
+        this.clips = clips;
     }
 
 

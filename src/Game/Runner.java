@@ -1,10 +1,8 @@
 package Game;
 
 import People.Person;
-import Rooms.Board;
 import Rooms.Room;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Runner {
@@ -12,28 +10,97 @@ public class Runner {
     private static boolean gameOn = true;
 
     public static void main(String[] args) {
-        System.out.println("Aliens"
+        boolean input = true;
+        int sSize = 0;
+        double iChance = 0;
+        int infested = 0;
+        int survivors = 0;
+        int supplyRooms = 0;
+        System.out.println("Aliens have invested your space station and you must escape." + "\n" +
+                "You are equipped with a suit that can take 5 hits before breaking and a laser pistol with 2 clips" + "\n" +
+                "Navigate through the station save as many survivors as you can" + "\n" +
+                "Although you can see the survivors distress beacons you don't know where the aliens are, so be careful!" + "\n" +
+                "If you encounter an infested room you can either clear the room with 1 clip or take damage and run out the the room." + "\n" +
+                "If your lucky and find a supply room your suit is repaired fully and you gain 2 additional clips." + "\n" +
+                "Infested rooms spread to the rooms adjacent to them randomly, they can infest survivors without you knowing so watch out!"
                 );
 
-        Room[][] Station = new Room[4][4];
-
-        for (int x = 0; x < Station.length; x++)
+        while (input)
         {
-            for (int y = 0; y < Station[x].length; y++)
+            Scanner in = new Scanner(System.in);
+            System.out.println("What room size do you want?([small], [medium] or [large])");
+            String size = in.nextLine();
             {
-                Station[x][y] = new Room(x, y);
+                if (size.equals("small") || size.equals("medium") || size.equals("large"))
+                {
+                    if (size.equals("small")) {
+                        sSize = 4;
+                        infested = 5;
+                        survivors = 2;
+                        supplyRooms = 1;
+                    }
+                    if (size.equals("medium")) {
+                        sSize = 6;
+                        infested = 16;
+                        survivors = 4;
+                        supplyRooms = 2;
+                    }
+                    if (size.equals("large")) {
+                        sSize = 10;
+                    }
+                    input = false;
+                }
+                else {
+                    System.out.println("Please choose a valid input.");
+                }
+            }
+        }
+
+        input = true;
+        while (input)
+        {
+            Scanner in = new Scanner(System.in);
+            System.out.println("What do you want the infestation chance to be?([small], [medium] or [large])");
+            String chance = in.nextLine();
+            if (chance.equals("small") || chance.equals("medium") || chance.equals("large")) {
+                if (chance.equals("small")) {
+                    iChance = .2;
+                }
+                if (chance.equals("medium")) {
+                    iChance = .4;
+                }
+                if (chance.equals("large")) {
+                    iChance = .6;
+                }
+                input = false;
+            }
+                else {
+                    System.out.println("Please choose a valid input.");
+                }
+        }
+
+        Room[][] building  = new Room[sSize][sSize];
+        Board station = new Board(building);
+
+        for (int x = 0; x < building .length; x++)
+        {
+            for (int y = 0; y < building [x].length; y++)
+            {
+                building [x][y] = new Room(x, y);
             }
         }
 
         //Setup player 1 and the input scanner
-        Person player1 = new Person("FirstName", "FamilyName", 0, 0);
-        Station[0][0].enterRoom(player1);
+        Person player1 = new Person("FirstName", "FamilyName", 0, 0,5,2);
+        building [0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
-        while (gameOn) {
+        System.out.println(station.toString(player1));
+        while (gameOn)
+        {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
-            if (validMove(move, player1, Station)) {
-                System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
+            if (validMove(move, player1, building )) {
+                System.out.println(station.toString(player1));
 
             } else {
                 System.out.println("Please choose a valid move.");

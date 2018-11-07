@@ -2,6 +2,8 @@ package Rooms;
 
 import People.Person;
 
+import java.util.Scanner;
+
 public class InfestedRoom extends Room
 {
     Person occupant;
@@ -18,7 +20,8 @@ public class InfestedRoom extends Room
      */
     public void enterRoom(Person x)
     {
-        System.out.println("The room is filled to the brim with aliens.");
+        System.out.println("The room is filled to the brim with aliens. Do you run through them or use your pistol?([run] or [pistol]");
+
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);

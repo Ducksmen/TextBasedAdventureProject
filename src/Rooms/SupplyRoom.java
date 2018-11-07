@@ -18,7 +18,7 @@ public class SupplyRoom extends Room
      */
     public void enterRoom(Person x)
     {
-        System.out.println("The room is filled to the brim with aliens.");
+        System.out.println("You find a supply room full of necessities. You fully repair your suit and obtain two extra clips.");
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
