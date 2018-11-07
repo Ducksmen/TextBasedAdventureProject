@@ -1,0 +1,36 @@
+package Rooms;
+
+import People.Person;
+
+public class SupplyRoom extends Room
+{
+    Person occupant;
+    int xLoc,yLoc;
+
+    public SupplyRoom(int x, int y)
+    {
+        super(x,y);
+    }
+
+    /**
+     * Method controls the results when a person enters this room.
+     * @param x the Person entering
+     */
+    public void enterRoom(Person x)
+    {
+        System.out.println("The room is filled to the brim with aliens.");
+        occupant = x;
+        x.setxLoc(this.xLoc);
+        x.setyLoc(this.yLoc);
+    }
+
+    /**
+     * Removes the player from the room.
+     * @param x
+     */
+    public void leaveRoom(Person x)
+    {
+        occupant = null;
+    }
+
+}

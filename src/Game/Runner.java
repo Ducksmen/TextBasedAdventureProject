@@ -4,51 +4,35 @@ import People.Person;
 import Rooms.Board;
 import Rooms.Room;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Runner {
 
-
     private static boolean gameOn = true;
 
     public static void main(String[] args) {
-        System.out.println("While dining at your rich uncle, Reinhardt's birthday party at his island mansion, the lights suddenly turned off. " + "\n" +
-                "When they turned back on a scream could heard from the main lobby," + "\n" +
-                "Your uncle's body is laid face first into the ground in his own blood, " + "\n" +
-                "the only visible wound being his own personal knife behind his neck." + "\n" +
-                "Excluding yourself there were six other people at the party." + "\n" +
-                "Your uncle's wife A, his personal butler B, his personal maid C, his two children D and E and finally his old friend F." + "\n" +
-                "It's up to you to find the murderer before they can hide all the evidence." + "\n" +
-                "Gather evidence by listening to everyone's testimonies and exploring the mansion" + "\n" +
-                "To accuse someone you need three pieces evidence and a motive." + "\n" +
-                "You lose if you wrongly accuse someone three times or"
-
+        System.out.println("Aliens"
                 );
 
-        int rows = 4;
-        int columns = 4;
-        String[][] mansion = new String[rows][columns];
-        Board area = new Board(mansion);
-        area.setMansion();
-        mansion[0][0] += "(X)";
-        area.print();
+        Room[][] Station = new Room[4][4];
 
-        Room[][] events = new Room[4][4];
-
-        for (int x = 0; x < events.length; x++) {
-            for (int y = 0; y < events[x].length; y++) {
-                events[x][y] = new Room(x, y);
+        for (int x = 0; x < Station.length; x++)
+        {
+            for (int y = 0; y < Station[x].length; y++)
+            {
+                Station[x][y] = new Room(x, y);
             }
         }
 
         //Setup player 1 and the input scanner
         Person player1 = new Person("FirstName", "FamilyName", 0, 0);
-        events[0][0].enterRoom(player1);
+        Station[0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
         while (gameOn) {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
-            if (validMove(move, player1, events)) {
+            if (validMove(move, player1, Station)) {
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
 
             } else {
