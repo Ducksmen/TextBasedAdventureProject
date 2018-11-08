@@ -1,7 +1,10 @@
 package Game;
 
 import People.Person;
+import Rooms.InfestedRoom;
 import Rooms.Room;
+import Rooms.SupplyRoom;
+import Rooms.Survivors;
 
 import java.util.Scanner;
 
@@ -47,6 +50,10 @@ public class Runner {
                     }
                     if (size.equals("large")) {
                         sSize = 10;
+                        infested = 45;
+                        survivors = 6;
+                        supplyRooms = 4;
+
                     }
                     input = false;
                 }
@@ -82,12 +89,46 @@ public class Runner {
         Room[][] building  = new Room[sSize][sSize];
         Board station = new Board(building);
 
-        for (int x = 0; x < building .length; x++)
+        for (int x = 0; x < building.length; x++)
         {
-            for (int y = 0; y < building [x].length; y++)
+            for (int y = 0; y < building[x].length; y++)
             {
                 building [x][y] = new Room(x, y);
             }
+        }
+        int x = 0;
+        int y = 0;
+        int r = 0;
+        int t = 0;
+        int o = 0;
+        int p = 0;
+
+        for (int i = 0;i<infested;i++)
+        {
+            x = (int)(Math.random()*sSize);
+            y = (int)(Math.random()*sSize);
+            r = x;
+            t = y;
+            building[x][y] = new InfestedRoom(x,y);
+        }
+
+        for (int i = 0;i<survivors;i++)
+        {
+            x = (int)(Math.random()*sSize);
+            y = (int)(Math.random()*sSize);
+            if (x == r)
+            {
+
+            }
+            building[x][y] = new Survivors(x,y);
+        }
+
+        for (int i = 0;i<supplyRooms;i++)
+        {
+            x = (int)(Math.random()*sSize);
+            y = (int)(Math.random()*sSize);
+
+            building[x][y] = new SupplyRoom(x,y);
         }
 
         //Setup player 1 and the input scanner

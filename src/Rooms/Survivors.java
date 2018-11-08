@@ -2,12 +2,12 @@ package Rooms;
 
 import People.Person;
 
-public class InfestedRoom extends Room
+public class Survivors extends Room
 {
-    public InfestedRoom(int x, int y)
-    {
-        super(x,y);
-    }
+    public Survivors(int x, int y)
+{
+    super(x,y);
+}
 
     /**
      * Method controls the results when a person enters this room.
@@ -15,7 +15,7 @@ public class InfestedRoom extends Room
      */
     public void enterRoom(Person x)
     {
-        System.out.println("The room is filled to the brim with aliens. Do you run through them or use your pistol?([run] or [pistol]");
+        System.out.println("You find an injured crew member inside the room.");
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
