@@ -4,9 +4,6 @@ import People.Person;
 
 public class SupplyRoom extends Room
 {
-    Person occupant;
-    int xLoc,yLoc;
-
     public SupplyRoom(int x, int y)
     {
         super(x,y);
