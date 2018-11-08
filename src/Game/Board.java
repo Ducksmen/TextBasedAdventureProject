@@ -12,6 +12,8 @@ public class Board
     private int t = 0;
     private int o = 0;
     private int k = 0;
+    private int xVal[];
+    private int yVal[];
     public Board(Room[][] a)
     {
         this.rooms = a;
@@ -23,7 +25,7 @@ public class Board
 
     public void createRoom()
     {
-        for (int i = 0;i<40;i++)
+        for (int i = 0;i<30;i++)
         {
             x = (int)(Math.random()*8);
             y = (int)(Math.random()*8);
@@ -40,24 +42,24 @@ public class Board
             rooms[x][y] = new InfestedRoom(x,y);
         }
 
-        for (int i = 0;i<20;i++)
+        for (int i = 0;i<15;i++)
         {
+            xVal = new int[15];
+            yVal = new int[15];
             x = (int)(Math.random()*8);
             y = (int)(Math.random()*8);
             if (x == r && y == t)
             {
-                while (x == r)
+                while (x == r && y == t || x == 0 && y == 0)
                 {
                     x = (int)(Math.random()*8);
-                }
-                while (y == t)
-                {
                     y = (int)(Math.random()*8);
                 }
-
             }
             o = x;
             k = y;
+            xVal[i] = x;
+            yVal[i] = y;
             rooms[x][y] = new Survivors(x,y);
         }
 
@@ -67,7 +69,7 @@ public class Board
             y = (int)(Math.random()*8);
             if (x == r && y == t || x == o && y == k)
             {
-                while (x == r && y == t || x == o && y == k)
+                while (x == r && y == t || x == o && y == k || x == 0 && y == 0)
                 {
                     x = (int)(Math.random()*8);
                     y = (int)(Math.random()*8);
@@ -90,13 +92,16 @@ public class Board
                 {
                     a += " [X] ";
                 }
-                else if (rooms[i][j] == rooms[x][y])
+                else for(int k = 0;k<15;k++)
                 {
-                    a += " [S] ";
-                }
-                else
-                {
-                    a += " [ ] ";
+                    if (rooms[i][j] == rooms[xVal[i]][yVal[i]])
+                    {
+                        a += " [S] ";
+                    }
+                    else
+                    {
+                        a += " [ ] ";
+                    }
                 }
             }
             a += "\n";
