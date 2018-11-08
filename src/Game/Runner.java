@@ -17,31 +17,8 @@ public class Runner {
                 "Navigate through the station save as many survivors as you can" + "\n" +
                 "Although you can see the survivors distress beacons you don't know where the aliens are, so be careful!" + "\n" +
                 "If you encounter an infested room you can either clear the room with 1 clip or take damage and run out the the room." + "\n" +
-                "If your lucky and find a supply room your suit is repaired fully and you gain 2 additional clips." + "\n" +
-                "Infested rooms spread to the rooms adjacent to them randomly, they can infest survivors without you knowing so watch out!"
+                "If your lucky and find a supply room your suit is repaired fully and you gain 2 additional clips." + "\n"
                 );
-
-        while (input)
-        {
-            Scanner in = new Scanner(System.in);
-            System.out.println("What do you want the infestation chance to be?([small], [medium] or [large])");
-            String chance = in.nextLine();
-            if (chance.equals("small") || chance.equals("medium") || chance.equals("large")) {
-                if (chance.equals("small")) {
-                    iChance = .2;
-                }
-                if (chance.equals("medium")) {
-                    iChance = .4;
-                }
-                if (chance.equals("large")) {
-                    iChance = .6;
-                }
-                input = false;
-            }
-                else {
-                    System.out.println("Please choose a valid input.");
-                }
-        }
 
         Room[][] building  = new Room[8][8];
         Board station = new Board(building);

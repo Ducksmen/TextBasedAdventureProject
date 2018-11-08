@@ -12,8 +12,9 @@ public class Board
     private int t = 0;
     private int o = 0;
     private int k = 0;
-    private int xVal[];
-    private int yVal[];
+    private int q = 0;
+    int xVal[];
+    int yVal[];
     public Board(Room[][] a)
     {
         this.rooms = a;
@@ -25,6 +26,8 @@ public class Board
 
     public void createRoom()
     {
+        xVal = new int[15];
+        yVal = new int[15];
         for (int i = 0;i<30;i++)
         {
             x = (int)(Math.random()*8);
@@ -44,8 +47,6 @@ public class Board
 
         for (int i = 0;i<15;i++)
         {
-            xVal = new int[15];
-            yVal = new int[15];
             x = (int)(Math.random()*8);
             y = (int)(Math.random()*8);
             if (x == r && y == t)
@@ -60,7 +61,9 @@ public class Board
             k = y;
             xVal[i] = x;
             yVal[i] = y;
+            System.out.println(xVal[i] + ", " + yVal[i]) ;
             rooms[x][y] = new Survivors(x,y);
+            rooms[x][y].survivor = true;
         }
 
         for (int i = 0;i<2;i++)
@@ -84,35 +87,37 @@ public class Board
     public String toString(Person p)
     {
         String a = "";
-        for(int i=0;i<rooms.length;i++)
+        boolean ym = true;
+        for(int i=0;i<8;i++)
         {
-            for(int j=0;j<rooms[i].length;j++)
+            for(int j=0;j<8;j++)
             {
                 if(p.getyLoc()==j && p.getxLoc()==i)
                 {
                     a += " [X] ";
                 }
-                else for(int k = 0;k<15;k++)
+                else if (rooms[i][j].survivor)
                 {
-                    if (rooms[i][j] == rooms[xVal[i]][yVal[i]])
-                    {
-                        a += " [S] ";
+                    while (ym) {
+                        for (int t = 0; t < 15; t++) {
+                            if (rooms[i][j] == rooms[xVal[t]][yVal[t]]) {
+                                a += " [S] ";
+                                ym = false;
+                            }
+                        }
                     }
-                    else
+                }
+                else
+                {
                     {
                         a += " [ ] ";
                     }
                 }
+                ym = true;
             }
             a += "\n";
         }
         return a;
 
     }
-
-
-
-
-
-
 }

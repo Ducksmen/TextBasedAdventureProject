@@ -4,9 +4,11 @@ import People.Person;
 
 public class Survivors extends Room
 {
+    public boolean survivor = true;
     public Survivors(int x, int y)
 {
     super(x,y);
+    survivor = true;
 }
 
     /**

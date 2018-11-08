@@ -4,6 +4,7 @@ import People.Person;
 
 public class SupplyRoom extends Room
 {
+    public boolean survivor = false;
     public SupplyRoom(int x, int y)
     {
         super(x,y);

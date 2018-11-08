@@ -4,6 +4,7 @@ import People.Person;
 
 public class InfestedRoom extends Room
 {
+    public boolean survivor = false;
     public InfestedRoom(int x, int y)
     {
         super(x,y);
