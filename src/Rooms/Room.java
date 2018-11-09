@@ -6,12 +6,14 @@ public class Room {
     Person occupant;
     int xLoc,yLoc;
     public boolean survivor = false;
+    public boolean infested = false;
 
     public Room(int x, int y)
     {
         xLoc = x;
         yLoc = y;
         survivor = false;
+        infested = false;
     }
 
     /**
@@ -20,10 +22,10 @@ public class Room {
      */
     public void enterRoom(Person x)
     {
-        System.out.println("");
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
+        System.out.println("You enter an empty room, luckily aliens haven't invested it yet.");
     }
 
     /**

@@ -6,8 +6,8 @@ package People;
 public class Person {
     String firstName;
     String familyName;
-    int hp;
-    int clips;
+    public int hp;
+    public int clips;
     int xLoc, yLoc;
 
 

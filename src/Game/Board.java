@@ -8,82 +8,101 @@ public class Board
     private Room[][] rooms;
     int x = 0;
     int y = 0;
-    private int r = 0;
     private int t = 0;
-    private int o = 0;
-    private int k = 0;
-    private int q = 0;
     int xVal[];
     int yVal[];
     public Board(Room[][] a)
     {
         this.rooms = a;
     }
-    public Board(int x, int y)
-    {
-        rooms = new Room[x][y];
-    }
 
+    /**
+     * xVal and yVal will save int x and y values of survivor rooms
+     * While creating rooms it only checks for the starting and exit room.
+     * Infested and supply rooms may be replaced because of this so I over compensated the amount of infested rooms.
+     * When I made sure each room didn't get replaced sometimes the board wouldn't print as it would take too long to find an unused room.
+     *
+     */
     public void createRoom()
     {
-        xVal = new int[15];
-        yVal = new int[15];
-        for (int i = 0;i<30;i++)
+        xVal = new int[12];
+        yVal = new int[12];
+        rooms[7][7] = new Exit(7,7);
+        //Creating infested rooms
+        for (int i = 0;i<40;i++)
         {
             x = (int)(Math.random()*8);
             y = (int)(Math.random()*8);
-            if (x == 0 && y == 0)
+            if (x == 0 && y == 0 || x == 7 && y == 7)
             {
-                while (x == 0 && y == 0)
+                while (x == 0 && y == 0 || x == 7 && y == 7)
                 {
                     x = (int)(Math.random()*8);
                     y = (int)(Math.random()*8);
                 }
             }
-            r = x;
-            t = y;
             rooms[x][y] = new InfestedRoom(x,y);
         }
-
-        for (int i = 0;i<15;i++)
+        //Creating supply rooms
+        for (int i = 0;i<5;i++)
         {
             x = (int)(Math.random()*8);
             y = (int)(Math.random()*8);
-            if (x == r && y == t)
+            if (x == 0 && y == 0 || x == 7 && y == 7)
             {
-                while (x == r && y == t || x == 0 && y == 0)
+                while (x == 0 && y == 0 || x == 7 && y == 7)
                 {
                     x = (int)(Math.random()*8);
                     y = (int)(Math.random()*8);
                 }
             }
-            o = x;
-            k = y;
+            rooms[x][y] = new SupplyRoom(x,y);
+        }
+        //Creating survivor rooms
+        for (int i = 0;i<12;i++)
+        {
+            x = (int)(Math.random()*8);
+            y = (int)(Math.random()*8);
+            if (x == 0 && y == 0 || x == 7 && y == 7)
+            {
+                while (x == 0 && y == 0 || x == 7 && y == 7)
+                {
+                    x = (int)(Math.random()*8);
+                    y = (int)(Math.random()*8);
+                }
+            }
             xVal[i] = x;
             yVal[i] = y;
-            System.out.println(xVal[i] + ", " + yVal[i]) ;
             rooms[x][y] = new Survivors(x,y);
             rooms[x][y].survivor = true;
         }
-
-        for (int i = 0;i<2;i++)
-        {
-            x = (int)(Math.random()*8);
-            y = (int)(Math.random()*8);
-            if (x == r && y == t || x == o && y == k)
-            {
-                while (x == r && y == t || x == o && y == k || x == 0 && y == 0)
-                {
-                    x = (int)(Math.random()*8);
-                    y = (int)(Math.random()*8);
-                }
-            }
-
-            rooms[x][y] = new SupplyRoom(x,y);
-        }
     }
 
+    /**
+     * infectChance gets a random number between 0.0 and 1.0
+     * randomSurvivor gets a random array location
+     * There is a 50% chance that 6 or less survivor rooms become surpriseInfected rooms
+     */
+    public void infectSpread()
+    {
+        double infectChance = Math.random();
+        int randomSurvivor;
+        if(infectChance < .51)
+        {
+            for (int i = 0;i<6;i++)
+            {
+                randomSurvivor = (int)(Math.random()*12);
+                rooms[xVal[randomSurvivor]][yVal[randomSurvivor]] = new surpriseInfected(xVal[randomSurvivor],yVal[randomSurvivor]);
+            }
+        }
 
+    }
+
+    /**
+     * First
+     * @param p Is needed for their x and y location
+     * @return Returns the board as a string
+     */
     public String toString(Person p)
     {
         String a = "";
@@ -96,13 +115,24 @@ public class Board
                 {
                     a += " [X] ";
                 }
+                else if (rooms[i][j] == rooms[7][7])
+                {
+                    a += " [E] ";
+                }
                 else if (rooms[i][j].survivor)
                 {
                     while (ym) {
-                        for (int t = 0; t < 15; t++) {
-                            if (rooms[i][j] == rooms[xVal[t]][yVal[t]]) {
-                                a += " [S] ";
-                                ym = false;
+                        if (rooms[i][j] == rooms[xVal[t]][yVal[t]])
+                        {
+                            a += " [S] ";
+                            ym = false;
+                            t = 0;
+                        }
+                        else
+                        {
+                            if (t<12)
+                            {
+                                t++;
                             }
                         }
                     }

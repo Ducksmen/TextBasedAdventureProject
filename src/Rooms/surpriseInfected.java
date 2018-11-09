@@ -5,11 +5,11 @@ import People.Person;
 
 import java.util.Scanner;
 
-public class InfestedRoom extends Room
+public class surpriseInfected extends Room
 {
     public boolean survivor = false;
     public boolean infested = true;
-    public InfestedRoom(int x, int y)
+    public surpriseInfected(int x, int y)
     {
         super(x,y);
         survivor = false;
@@ -27,7 +27,7 @@ public class InfestedRoom extends Room
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
         Scanner in = new Scanner(System.in);
-        System.out.println("The room is filled to the brim with aliens. Do you run through them or use your pistol?([run] or [pistol]");
+        System.out.println("You were too late the room is filled with infected aliens. Do you run through them or use your pistol?([run] or [pistol]");
         while (active)
         {
             String move = in.nextLine();

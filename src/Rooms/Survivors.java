@@ -5,10 +5,12 @@ import People.Person;
 public class Survivors extends Room
 {
     public boolean survivor = true;
+    public boolean infested = true;
     public Survivors(int x, int y)
 {
     super(x,y);
     survivor = true;
+    infested = false;
 }
 
     /**
@@ -17,10 +19,16 @@ public class Survivors extends Room
      */
     public void enterRoom(Person x)
     {
-        System.out.println("You find an injured crew member inside the room.");
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
+        System.out.println("You find a crew member who repairs your suit and gives you an extra clip.");
+        x.clips++;
+        x.hp++;
+        if(x.hp>5)
+        {
+            x.hp = 5;
+        }
     }
 
     /**
