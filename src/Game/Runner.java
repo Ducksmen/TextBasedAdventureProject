@@ -16,9 +16,9 @@ public class Runner {
                 "If you encounter an infested room you can either use your pistol or run." + "\n" +
                 "Using your pistol doesn't kill all of the aliens so they will return if you go back to that room but you will take no damage." + "\n" +
                 "Running leaves the aliens still in there and your suit will take damage." + "\n" +
-                "If you save a survivor, they will give you 1 clip and repair your suit by 1." + "\n" +
-                "If your lucky and find a supply room your suit is repaired fully and you gain 2 additional clips." + "\n" +
-                "Survivor rooms may become infected randomly."
+                "If you find a survivor, they will give you 1 clip and repair your suit by 1." + "\n" +
+                "Even though you can go into survivor rooms as many times as you want their is a chance they become infested" + "\n" +
+                "If your lucky and find a supply room your suit is repaired fully and you gain 2 additional clips."
                 );
 
         Room[][] building  = new Room[8][8];
