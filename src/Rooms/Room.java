@@ -11,6 +11,7 @@ public class Room {
     int xLoc,yLoc;
     public boolean survivor = false;
     public boolean infested = false;
+    public boolean surprise = false;
 
     public Room(int x, int y)
     {
@@ -18,6 +19,7 @@ public class Room {
         yLoc = y;
         survivor = false;
         infested = false;
+        surprise = false;
     }
 
     /**

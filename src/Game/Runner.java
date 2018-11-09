@@ -10,9 +10,9 @@ public class Runner {
     private static boolean gameOn = true;
 
     public static void main(String[] args) {
-        System.out.println("Aliens have invested your space station and you must escape." + "\n" +
-                "You are equipped with a suit that can take 4 hits before breaking and a laser pistol with 4 clips" + "\n" +
-                "You can see the survivors distress beacons you don't know where the aliens are, so be careful!" + "\n" +
+        System.out.println("Aliens have invested your space station and you must escape [E]." + "\n" +
+                "You are equipped with a suit that can take 3 hits before breaking and a laser pistol with 1 clip" + "\n" +
+                "You can see the survivors distress beacons [S] you don't know where the aliens are, so be careful!" + "\n" +
                 "If you encounter an infested room you can either use your pistol or run." + "\n" +
                 "Using your pistol doesn't kill all of the aliens so they will return if you go back to that room but you will take no damage." + "\n" +
                 "Running leaves the aliens still in there and your suit will take damage." + "\n" +
@@ -33,7 +33,7 @@ public class Runner {
         }
         station.createRoom();
         //Setup player 1 and the input scanner
-        Person player1 = new Person("FirstName", "FamilyName", 0, 0,5,4);
+        Person player1 = new Person("FirstName", "FamilyName", 0, 0,3,1);
         building [0][0].enterRoom(player1);
         Scanner in = new Scanner(System.in);
         System.out.println(station.toString(player1));
@@ -41,11 +41,12 @@ public class Runner {
         {
             System.out.println("Where would you like to move? (Choose N, S, E, W)" + "(Suit Hp: " + (player1.hp - 1)  + " Pistol Clips: " + player1.clips + ")");
             String move = in.nextLine();
-            if (validMove(move, player1, building )) {
+            if (validMove(move, player1, building))
+            {
                 System.out.println(station.toString(player1));
                 station.infectSpread();
-
-            } else {
+            }
+            else {
                 System.out.println("Please choose a valid move.");
             }
 

@@ -9,11 +9,13 @@ public class surpriseInfected extends Room
 {
     public boolean survivor = false;
     public boolean infested = true;
+    public  boolean surprise = true;
     public surpriseInfected(int x, int y)
     {
         super(x,y);
         survivor = false;
         infested = true;
+        surprise = true;
     }
 
     /**
@@ -38,8 +40,9 @@ public class surpriseInfected extends Room
                 {
                     System.out.println("You are overwhelmed by the aliens and die."+ "\n" + "GAME OVER");
                     Runner.gameOff();
+                    active = false;
                 }
-                if(x.hp ==1)
+                else if(x.hp ==1)
                 {
                     System.out.println("Your suit is broken as you run out of the room, one more hit and your done.");
                     active = false;

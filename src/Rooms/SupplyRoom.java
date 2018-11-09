@@ -6,11 +6,13 @@ public class SupplyRoom extends Room
 {
     public boolean survivor = false;
     public boolean infested = false;
+    public boolean surprise = false;
     public SupplyRoom(int x, int y)
     {
         super(x,y);
         survivor = true;
         infested = false;
+        surprise = false;
     }
 
     /**
@@ -24,7 +26,7 @@ public class SupplyRoom extends Room
         x.setyLoc(this.yLoc);
         System.out.println("You find a supply room full of necessities. You fully repair your suit and obtain two extra clips.");
         x.clips += 2;
-        x.hp = 5;
+        x.hp = 3;
     }
 
     /**

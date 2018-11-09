@@ -5,12 +5,14 @@ import People.Person;
 public class Survivors extends Room
 {
     public boolean survivor = true;
-    public boolean infested = true;
+    public boolean infested = false;
+    public boolean surprise = false;
     public Survivors(int x, int y)
 {
     super(x,y);
     survivor = true;
     infested = false;
+    surprise = false;
 }
 
     /**
@@ -25,9 +27,9 @@ public class Survivors extends Room
         System.out.println("You find a crew member who repairs your suit and gives you an extra clip.");
         x.clips++;
         x.hp++;
-        if(x.hp>5)
+        if(x.hp>3)
         {
-            x.hp = 5;
+            x.hp = 3;
         }
     }
 

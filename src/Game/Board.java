@@ -9,6 +9,7 @@ public class Board
     int x = 0;
     int y = 0;
     private int t = 0;
+    private int g = 0;
     int xVal[];
     int yVal[];
     public Board(Room[][] a)
@@ -89,10 +90,11 @@ public class Board
         int randomSurvivor;
         if(infectChance < .51)
         {
-            for (int i = 0;i<6;i++)
+            for (int i = 0;i<3;i++)
             {
                 randomSurvivor = (int)(Math.random()*12);
                 rooms[xVal[randomSurvivor]][yVal[randomSurvivor]] = new surpriseInfected(xVal[randomSurvivor],yVal[randomSurvivor]);
+                rooms[xVal[randomSurvivor]][yVal[randomSurvivor]].surprise = true;
             }
         }
 
@@ -121,9 +123,29 @@ public class Board
                 {
                     a += " [E] ";
                 }
+                else if (rooms[i][j].surprise)
+                {
+                    while (ym)
+                    {
+                        if (rooms[i][j] == rooms[xVal[g]][yVal[g]])
+                        {
+                            a += " [S] ";
+                            ym = false;
+                            g = 0;
+                        }
+                        else
+                        {
+                            if (g<12)
+                            {
+                                g++;
+                            }
+                        }
+                    }
+                }
                 else if (rooms[i][j].survivor)
                 {
-                    while (ym) {
+                    while (ym)
+                    {
                         if (rooms[i][j] == rooms[xVal[t]][yVal[t]])
                         {
                             a += " [S] ";
