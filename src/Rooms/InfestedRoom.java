@@ -20,6 +20,11 @@ public class InfestedRoom extends Room
      * Method controls the results when a person enters this room.
      * @param x the Person entering
      */
+
+    /**
+     * while active is true the player must either run or use their pistol
+     * @param x the Person entering
+     */
     public void enterRoom(Person x)
     {
         boolean active = true;

@@ -99,7 +99,9 @@ public class Board
     }
 
     /**
-     * First
+     * Prints the player location as [X] on the map
+     * If the room is a survivor room it runs a while loop that finds that exact room and prints [S]
+     * Every other room is [ ].
      * @param p Is needed for their x and y location
      * @return Returns the board as a string
      */

@@ -2,6 +2,10 @@ package Rooms;
 
 import People.Person;
 
+/**
+ * boolean survivor and infested says if the room has a survivor or is infested.
+ *
+ */
 public class Room {
     Person occupant;
     int xLoc,yLoc;
